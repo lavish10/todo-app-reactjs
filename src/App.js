@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import CreateTask from "./components/CreateTask";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            tasks: []
+        };
+        this.handleAddTask = this.handleAddTask.bind(this);
+    }
+
+    handleAddTask(newTaskContent) {
+        this.setState({
+            tasks: this.state.tasks.concat(newTaskContent)
+        });
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <h1>TODO APP</h1>
+                <CreateTask newTask={this.handleAddTask}/>
+                <ul>
+                    {
+                        this.state.tasks.map((task) => {
+                            return <li>{task}</li>
+                        })
+                    }
+                </ul>
+            </div>
+        );
+    }
+
 }
 
 export default App;
