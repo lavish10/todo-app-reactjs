@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import CreateTask from "./components/CreateTask";
+import TaskView from "./components/TaskView";
 
 class App extends Component {
 
@@ -26,7 +27,12 @@ class App extends Component {
                 <ul>
                     {
                         this.state.tasks.map((task, id) => {
-                            return <li id={`task_${id}`}>{task}</li>
+                            return (
+                                <TaskView
+                                    task={task}
+                                    id={id}
+                                />
+                            );
                         })
                     }
                 </ul>
