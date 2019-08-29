@@ -25,8 +25,8 @@ class App extends Component {
                 <CreateTask newTask={this.handleAddTask}/>
                 <ul>
                     {
-                        this.state.tasks.map((task) => {
-                            return <li>{task}</li>
+                        this.state.tasks.map((task, id) => {
+                            return <li id={`task_${id}`}>{task}</li>
                         })
                     }
                 </ul>
